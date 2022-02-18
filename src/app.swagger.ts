@@ -6,6 +6,7 @@ export const startSwagger = (app: INestApplication) => {
     .setTitle('MyEagleDev - API v1.0.0 🚀')
     .addBearerAuth()
     .setDescription('Documentación API Software MyEagleDev 🔥')
+    .setVersion('1.0.0')
     .build();
 
   const document = SwaggerModule.createDocument(app, swaggerConfiguration);

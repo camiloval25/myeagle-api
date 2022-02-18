@@ -1,8 +1,12 @@
 {
     "cSpell.words": [
+        "Creacion",
         "documentacion",
+        "Logueado",
         "mariadb",
         "myeagledev",
-        "nestjs"
+        "myeagledeverpapi",
+        "nestjs",
+        "typeorm"
     ]
 }
