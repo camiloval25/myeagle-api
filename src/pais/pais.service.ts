@@ -1,8 +1,14 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import {
+  BadRequestException,
+  HttpException,
+  HttpStatus,
+  Injectable,
+  InternalServerErrorException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { ActualizarPaisDTO, CrearPaisDTO, PaisDTO } from './dtos/pais.dto';
-import { Pais } from './entities/pais.entities';
+import { Pais } from './entities/pais.entity';
 
 @Injectable()
 export class PaisService {

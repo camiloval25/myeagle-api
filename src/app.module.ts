@@ -7,6 +7,7 @@ import { AppService } from './app.service';
 import { UsuarioModule } from './usuario/usuario.module';
 import { AuthModule } from './auth/auth.module';
 import { PaisModule } from './pais/pais.module';
+import { DepartamentoModule } from './departamento/departamento.module';
 
 @Module({
   imports: [
@@ -29,6 +30,7 @@ import { PaisModule } from './pais/pais.module';
     UsuarioModule,
     AuthModule,
     PaisModule,
+    DepartamentoModule,
   ],
   controllers: [AppController],
   providers: [AppService],
