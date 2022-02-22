@@ -22,6 +22,10 @@ export class PaisDTO {
   nombre: string;
 
   @IsString()
+  @IsOptional()
+  sigla: string;
+
+  @IsString()
   usuarioCreacion: Usuario;
 
   @IsOptional()

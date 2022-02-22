@@ -19,6 +19,9 @@ export class Pais {
   @Column({ type: 'varchar' })
   nombre: string;
 
+  @Column({ type: 'varchar', length: 5, nullable: true })
+  sigla: string;
+
   @ManyToOne(() => Usuario, { nullable: false })
   @JoinColumn({ name: 'usuarioCreacion' })
   usuarioCreacion: Usuario;
