@@ -1,5 +1,6 @@
 import { PartialType, OmitType } from '@nestjs/mapped-types';
 import {
+  IsBoolean,
   IsDate,
   IsNotEmpty,
   IsOptional,
@@ -24,6 +25,10 @@ export class PaisDTO {
   @IsString()
   @IsOptional()
   sigla: string;
+
+  @IsBoolean()
+  @IsOptional()
+  favorito: boolean;
 
   @IsString()
   usuarioCreacion: Usuario;
