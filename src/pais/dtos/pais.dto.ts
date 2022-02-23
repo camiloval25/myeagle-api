@@ -52,12 +52,14 @@ export class PaisDTO {
   fechaModificacion: Date;
 }
 
-export class CrearPaisDTO extends PartialType(OmitType(PaisDTO, [
-  'id',
-  'usuarioModificacion',
-  'equipoModificacion',
-  'fechaCreacion',
-  'fechaModificacion',
-] as const)) {}
+export class CrearPaisDTO extends PartialType(
+  OmitType(PaisDTO, [
+    'id',
+    'usuarioModificacion',
+    'equipoModificacion',
+    'fechaCreacion',
+    'fechaModificacion',
+  ] as const),
+) {}
 
 export class ActualizarPaisDTO extends PartialType(CrearPaisDTO) {}

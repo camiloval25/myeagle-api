@@ -1,38 +1,43 @@
-import { OmitType } from '@nestjs/mapped-types';
-import { PartialType } from '@nestjs/swagger';
+import { OmitType, PartialType } from '@nestjs/mapped-types';
 import {
+  IsBoolean,
   IsDate,
-  IsNotEmpty,
   IsOptional,
   IsString,
   IsUUID,
 } from 'class-validator';
-import { Pais } from 'src/pais/entities/pais.entity';
+import { Departamento } from 'src/departamento/entities';
 import { Usuario } from 'src/usuario/entities/usuarios.entity';
 
-export class DepartamentoDTO {
+export class MunicipioDTO {
   @IsUUID('4')
-  @IsOptional()
   id: string;
 
   @IsString()
-  paisId: Pais;
+  departamentoId: Departamento;
 
   @IsString()
-  @IsNotEmpty()
   codigo: string;
 
   @IsString()
-  @IsNotEmpty()
   nombre: string;
+
+  @IsString()
+  @IsOptional()
+  sigla: string;
+
+  @IsBoolean()
+  favorito: boolean;
 
   @IsString()
   usuarioCreacion: Usuario;
 
+  @IsString()
   @IsOptional()
   usuarioModificacion: Usuario;
 
   @IsString()
+  @IsOptional()
   equipoCreacion: string;
 
   @IsString()
@@ -40,7 +45,6 @@ export class DepartamentoDTO {
   equipoModificacion: string;
 
   @IsDate()
-  @IsOptional()
   fechaCreacion: Date;
 
   @IsDate()
@@ -48,8 +52,8 @@ export class DepartamentoDTO {
   fechaModificacion: Date;
 }
 
-export class CrearDepartamentoDTO extends PartialType(
-  OmitType(DepartamentoDTO, [
+export class CrearMunicipioDTO extends PartialType(
+  OmitType(MunicipioDTO, [
     'id',
     'usuarioModificacion',
     'equipoModificacion',
@@ -58,6 +62,4 @@ export class CrearDepartamentoDTO extends PartialType(
   ] as const),
 ) {}
 
-export class ActualizarDepartamentoDTO extends PartialType(
-  CrearDepartamentoDTO,
-) {}
+export class ActualizarMunicipioDTO extends PartialType(MunicipioDTO) {}

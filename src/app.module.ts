@@ -8,6 +8,7 @@ import { UsuarioModule } from './usuario/usuario.module';
 import { AuthModule } from './auth/auth.module';
 import { PaisModule } from './pais/pais.module';
 import { DepartamentoModule } from './departamento/departamento.module';
+import { MunicipioModule } from './municipio/municipio.module';
 
 @Module({
   imports: [
@@ -31,6 +32,7 @@ import { DepartamentoModule } from './departamento/departamento.module';
     AuthModule,
     PaisModule,
     DepartamentoModule,
+    MunicipioModule,
   ],
   controllers: [AppController],
   providers: [AppService],
