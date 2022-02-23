@@ -19,6 +19,10 @@ export class DepartamentoService {
     return await this.departamentoRepository.find({ loadRelationIds: true });
   }
 
+  async buscar(campo: string, valor: any): Promise<DepartamentoDTO[]> {
+    return await this.departamentoRepository.find({ [campo]: valor });
+  }
+
   async obtenerPorID(departamentoId: string): Promise<DepartamentoDTO> {
     const departamento = await this.departamentoRepository.findOne(
       {

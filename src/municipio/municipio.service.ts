@@ -23,6 +23,10 @@ export class MunicipioService {
     return await this.municipioRepository.find();
   }
 
+  async buscar(campo: string, valor: string): Promise<MunicipioDTO[]> {
+    return await this.municipioRepository.find({ [campo]: valor });
+  }
+
   async obtenerPorId(municipioId: string): Promise<MunicipioDTO> {
     const municipio = await this.municipioRepository.findOne({
       id: municipioId,

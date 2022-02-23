@@ -21,6 +21,10 @@ export class PaisService {
     return this.paisesRepository.find();
   }
 
+  async buscar(campo: string, valor: any): Promise<PaisDTO[]> {
+    return await this.paisesRepository.find({ [campo]: valor });
+  }
+
   async obtenerPorID(paisId: string): Promise<PaisDTO> {
     const pais = await this.paisesRepository.findOne({ id: paisId });
     if (!pais)
@@ -40,8 +44,8 @@ export class PaisService {
     return pais;
   }
 
-  async validarPaisPorCodigo(codigo: string) : Promise<PaisDTO> {
-    return await this.paisesRepository.findOne({codigo});
+  async validarPaisPorCodigo(codigo: string): Promise<PaisDTO> {
+    return await this.paisesRepository.findOne({ codigo });
   }
 
   async crearPais(pais: CrearPaisDTO): Promise<PaisDTO> {

@@ -6,7 +6,6 @@ import {
   Param,
   Put,
   Post,
-  BadRequestException,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { DepartamentoService } from './departamento.service';
@@ -23,6 +22,11 @@ export class DepartamentoController {
   @Get()
   async obtenerTodos() {
     return await this.departamentoService.obtenerTodos();
+  }
+
+  @Get('/buscar/:campo/:valor')
+  async buscar(@Param('campo') campo: string, @Param('valor') valor: any) {
+    return await this.departamentoService.buscar(campo, valor);
   }
 
   @Get('/id/:departamentoId')

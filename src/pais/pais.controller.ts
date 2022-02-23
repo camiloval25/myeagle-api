@@ -21,6 +21,11 @@ export class PaisController {
     return await this.paisesService.obtenerTodos();
   }
 
+  @Get('/buscar/:campo/:valor')
+  async buscar(@Param('campo') campo: string, @Param('valor') valor: any) {
+    return await this.paisesService.buscar(campo, valor);
+  }
+
   @Get('/id/:paisId')
   async obtenerPaisPorId(@Param('paisId') paisId: string) {
     return await this.paisesService.obtenerPorID(paisId);
