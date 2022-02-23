@@ -40,6 +40,10 @@ export class PaisService {
     return pais;
   }
 
+  async validarPaisPorCodigo(codigo: string) : Promise<PaisDTO> {
+    return await this.paisesRepository.findOne({codigo});
+  }
+
   async crearPais(pais: CrearPaisDTO): Promise<PaisDTO> {
     const paisExiste = await this.paisesRepository.findOne({
       codigo: pais.codigo,

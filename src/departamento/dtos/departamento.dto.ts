@@ -48,12 +48,12 @@ export class DepartamentoDTO {
   fechaModificacion: Date;
 }
 
-export class CrearDepartamentoDTO extends OmitType(DepartamentoDTO, [
+export class CrearDepartamentoDTO extends PartialType(OmitType(DepartamentoDTO, [
   'id',
   'usuarioModificacion',
   'equipoModificacion',
   'fechaCreacion',
   'fechaModificacion',
-] as const) {}
+] as const)) {}
 
 export class ActualizarDepartamentoDTO extends PartialType(DepartamentoDTO) {}

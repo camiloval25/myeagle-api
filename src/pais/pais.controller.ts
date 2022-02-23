@@ -8,7 +8,7 @@ import {
   Put,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
-import { ActualizarPaisDTO, PaisDTO } from './dtos/pais.dto';
+import { ActualizarPaisDTO, CrearPaisDTO, PaisDTO } from './dtos/pais.dto';
 import { PaisService } from './pais.service';
 
 @ApiTags('Paises')
@@ -31,8 +31,13 @@ export class PaisController {
     return await this.paisesService.obtenerPaisPorCodigo(codigo);
   }
 
+  @Get('/validar-codigo/:codigo')
+  async validarCodigoDelPais(@Param('codigo') codigo: string) {
+    return await this.paisesService.validarPaisPorCodigo(codigo);
+  }
+
   @Post()
-  async crearPais(@Body() pais: PaisDTO) {
+  async crearPais(@Body() pais: CrearPaisDTO) {
     return await this.paisesService.crearPais(pais);
   }
 
