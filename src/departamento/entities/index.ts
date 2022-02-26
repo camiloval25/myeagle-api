@@ -18,10 +18,10 @@ export class Departamento {
   @JoinColumn({ name: 'paisId' })
   paisId: Pais;
 
-  @Column({ type: 'varchar', length: 5 })
+  @Column({ type: 'varchar', length: 5, unique: true })
   codigo: string;
 
-  @Column({ type: 'varchar' })
+  @Column({ type: 'varchar', unique: true })
   nombre: string;
 
   @ManyToOne(() => Usuario, { nullable: false })

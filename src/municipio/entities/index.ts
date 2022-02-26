@@ -18,7 +18,7 @@ export class Municipio {
   @JoinColumn({ name: 'departamentoId' })
   departamentoId: Departamento;
 
-  @Column({ type: 'varchar', length: 5 })
+  @Column({ type: 'varchar', length: 5, unique: true })
   codigo: string;
 
   @Column({ type: 'varchar' })

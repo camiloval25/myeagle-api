@@ -29,6 +29,12 @@ export class DepartamentoController {
     return await this.departamentoService.buscar(campo, valor);
   }
 
+  @Get('/cargar-secuencia')
+  async cargarSecuencia() {
+    return await this.departamentoService.cargarSecuencia();
+  }
+
+
   @Get('/id/:departamentoId')
   async obtenerDepartamentoPorID(
     @Param('departamentoId') departamentoId: string,

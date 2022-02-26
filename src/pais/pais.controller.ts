@@ -26,6 +26,11 @@ export class PaisController {
     return await this.paisesService.buscar(campo, valor);
   }
 
+  @Get('/cargar-secuencia')
+  async cargarSecuencia() {
+    return await this.paisesService.cargarSecuencia();
+  }
+
   @Get('/id/:paisId')
   async obtenerPaisPorId(@Param('paisId') paisId: string) {
     return await this.paisesService.obtenerPorID(paisId);

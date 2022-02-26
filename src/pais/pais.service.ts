@@ -6,6 +6,7 @@ import {
   InternalServerErrorException,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { CodigoSecuenciaDTO } from 'src/common/dtos/codigo-secuencia';
 import { Repository } from 'typeorm';
 import { ActualizarPaisDTO, CrearPaisDTO, PaisDTO } from './dtos/pais.dto';
 import { Pais } from './entities/pais.entity';
@@ -15,7 +16,7 @@ export class PaisService {
   constructor(
     @InjectRepository(Pais)
     private readonly paisesRepository: Repository<Pais>,
-  ) {}
+  ) { }
 
   async obtenerTodos(): Promise<PaisDTO[]> {
     return this.paisesRepository.find();
@@ -23,6 +24,20 @@ export class PaisService {
 
   async buscar(campo: string, valor: any): Promise<PaisDTO[]> {
     return await this.paisesRepository.find({ [campo]: valor });
+  }
+
+  async cargarSecuencia(): Promise<CodigoSecuenciaDTO> {
+    const maximoCodigo = await this.paisesRepository.createQueryBuilder('paises')
+      .select('MAX(paises.codigo)', 'codigo')
+      .getRawOne()
+
+    const validarTipoCodigo = parseInt(maximoCodigo.codigo);
+    if(!validarTipoCodigo) {
+      return {codigo: '1'}
+    }
+
+    const codigoIncrementado = validarTipoCodigo + 1
+    return {codigo: codigoIncrementado.toString()};
   }
 
   async obtenerPorID(paisId: string): Promise<PaisDTO> {

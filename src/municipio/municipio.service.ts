@@ -4,6 +4,7 @@ import {
   Injectable,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { CodigoSecuenciaDTO } from 'src/common/dtos/codigo-secuencia';
 import { Repository } from 'typeorm';
 import {
   ActualizarMunicipioDTO,
@@ -25,6 +26,20 @@ export class MunicipioService {
 
   async buscar(campo: string, valor: string): Promise<MunicipioDTO[]> {
     return await this.municipioRepository.find({ [campo]: valor });
+  }
+
+  async cargarSecuencia(): Promise<CodigoSecuenciaDTO> {
+    const maximoCodigo = await this.municipioRepository.createQueryBuilder('municipios')
+      .select('MAX(municipios.codigo)', 'codigo')
+      .getRawOne()
+
+    const validarTipoCodigo = parseInt(maximoCodigo.codigo);
+    if(!validarTipoCodigo) {
+      return {codigo: '1'}
+    }
+
+    const codigoIncrementado = validarTipoCodigo + 1
+    return {codigo: codigoIncrementado.toString()};
   }
 
   async obtenerPorId(municipioId: string): Promise<MunicipioDTO> {

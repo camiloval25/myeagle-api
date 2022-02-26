@@ -26,6 +26,12 @@ export class MunicipioController {
     return await this.municipioService.buscar(campo, valor);
   }
 
+  @Get('/cargar-secuencia')
+  async cargarSecuencia() {
+    return await this.municipioService.cargarSecuencia();
+  }
+
+
   @Get('/id/:municipioId')
   async obtenerPorId(@Param('municipioId') municipioId: string) {
     return await this.municipioService.obtenerPorId(municipioId);

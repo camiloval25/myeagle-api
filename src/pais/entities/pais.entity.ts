@@ -13,10 +13,10 @@ export class Pais {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column({ type: 'varchar', length: 5 })
+  @Column({ type: 'varchar', length: 5, unique: true })
   codigo: string;
 
-  @Column({ type: 'varchar' })
+  @Column({ type: 'varchar', unique: true })
   nombre: string;
 
   @Column({ type: 'varchar', length: 5, nullable: true })

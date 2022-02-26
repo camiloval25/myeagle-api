@@ -1,5 +1,6 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { CodigoSecuenciaDTO } from 'src/common/dtos/codigo-secuencia';
 import { Repository } from 'typeorm';
 import {
   ActualizarDepartamentoDTO,
@@ -21,6 +22,21 @@ export class DepartamentoService {
 
   async buscar(campo: string, valor: any): Promise<DepartamentoDTO[]> {
     return await this.departamentoRepository.find({ [campo]: valor });
+  }
+
+  
+  async cargarSecuencia(): Promise<CodigoSecuenciaDTO> {
+    const maximoCodigo = await this.departamentoRepository.createQueryBuilder('departamentos')
+      .select('MAX(departamentos.codigo)', 'codigo')
+      .getRawOne()
+
+    const validarTipoCodigo = parseInt(maximoCodigo.codigo);
+    if(!validarTipoCodigo) {
+      return {codigo: '1'}
+    }
+
+    const codigoIncrementado = validarTipoCodigo + 1
+    return {codigo: codigoIncrementado.toString()};
   }
 
   async obtenerPorID(departamentoId: string): Promise<DepartamentoDTO> {
